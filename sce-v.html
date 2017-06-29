@@ -95,6 +95,7 @@
       vertical-align: middle;
       margin-left: 5px;
     }
+    
   </style>
   <script>
     function getOSinfo(window) {
@@ -468,7 +469,7 @@
         var cardType = $.payment.cardType(cardNumber);
         if (cardNumber.length == 0) {
           $('.cc-number').toggleInputError(true);
-          $('#partialCardNumberError').text('CARD NUMBER REQUIRED');
+          $('#partialCardNumberError').text('CREDIT CARD NUMBER REQUIRED');
         }
         if (expdate.length == 0) {
           $('#expDateError').text('EXPIRATION REQUIRED');
@@ -488,9 +489,9 @@
         $('.cc-cvv').toggleInputError(!$.payment.validateCardCVC(cvvTemp, cardType));
 
         //if any error within form, then do nothing
-        if ($('.has-error').length == 0) {
+        if ($('.error').text() == '') {
           console.log(getSecureCardData());
-
+          $('#denyError').text('');
           if (isMobile) {
             if (os == 'Android') {
               AndroidSubmit(getSecureCardData(), expdate, avs, publickeyId);
@@ -498,7 +499,9 @@
               iOSSubmit();
             }
           }
-        }
+        }else{
+            $('#denyError').text('CREDIT CARD DENIED');
+          }
       });
 
       // $('.cc-number').payment('formatCardNumber');
@@ -513,6 +516,8 @@
         // var cvv = getCVVText();
         var encrypt = new JSEncrypt();
         encrypt.setPublicKey(publickey);
+
+        activeAddon(cardNumber, $('#input-credit-card'));
 
         var keyPosition = getInputSelection(this).start;
         pArr.push(keyPosition);
@@ -532,14 +537,17 @@
           'value': '',
           'encrypted': ''
         };
-        var existedBrankIcon = ['visa', 'mastercard', 'amex', 'discover', 'jcb'];
-        if ($.inArray(cardType, existedBrankIcon) != -1) {
+        var supportBrandIcon = ['visa', 'mastercard', 'amex', 'discover', 'jcb', 'dinersclub'];
+        if ($.inArray(cardType, supportBrandIcon) != -1) {
           brandShow = '<i class="fa fa-cc-' + cardType + ' fa-2x"></i>';
+          if('dinersclub' == cardType){
+          	brandShow = '<i class="fa fa-cc-diners-club fa-2x"></i>';
+          }
         } else {
           if (cardType == null) {
-            brandShow = '';
+            brandShow = '<i class="fa fa-credit-card fa-2x"></i>';
           } else {
-            brandShow = '<i>[' + cardType + ']</i>';
+            brandShow = '[' + cardType + ']';
           }
         }
         $('.cc-brand').html(brandShow);
@@ -618,9 +626,9 @@
         })
         if (!luhnValid || !isExistedLength) {
           if (getPanText().length == 0) {
-            $('#partialCardNumberError').text('CARD NUMBER REQUIRED');
+            $('#partialCardNumberError').text('CREDIT CARD NUMBER REQUIRED');
           } else {
-            $('#partialCardNumberError').text('INVALID CARD NUMBER');
+            $('#partialCardNumberError').text('INVALID CREDIT CARD NUMBER');
           }
         } else {
           $('#partialCardNumberError').text('');
@@ -654,6 +662,10 @@
         $('.cc-exp').toggleInputError(!$.payment.validateCardExpiry($('.cc-exp').payment('cardExpiryVal')));
       })
 
+      ced.addEventListener('keyup', function (e) {
+      	activeAddon(ced.value, $('#input-exp-date'));
+      })
+
       $.fn.toggleInputError = function (erred) {
         this.parent('.form-group').toggleClass('has-error', erred);
         return this;
@@ -669,6 +681,8 @@
           'value': '',
           'encrypted': ''
         };
+
+        activeAddon(cvvValue, $('#input-cvv'));
 
         if (cvvValue.length == 1) {
           encryptedCvv = [];
@@ -742,6 +756,10 @@
         }
       })
 
+      avsInput.addEventListener('keyup', function (e) {
+      	activeAddon(avsInput.value, $('#input-avs'));
+      })
+
       //backspace remove all context inside card number input
       $('#input-cvv').on("keydown", function (e) {
         e = e ? e : event;
@@ -792,6 +810,15 @@
       this.setCursorPosition(this.val().length);
     }
 
+    //toggle color to dark when type
+    function activeAddon(value, $target){
+    	if(value.length > 0){
+        	$target.parent().find('.custom-addon').css('color', '#555');
+        }else{
+        	$target.parent().find('.custom-addon').css('color', 'darkgrey');
+        }
+    }
+
     function preventLongKeypress() {
       var flag = 0;
       $("#input-credit-card, #input-cvv").on('keydown', function (e) {
@@ -818,15 +845,9 @@
       return document.getElementById('input-avs').value;
     }
     function getSecureCardData() {
-      if ($('.has-error').length != 0) {
-        secureCardData.secure_card_data_key_reference = publickeyId;
-        secureCardData.secure_card_number = null;
-        secureCardData.secure_card_cvv = null;
-      } else {
-        secureCardData.secure_card_data_key_reference = publickeyId;
-        secureCardData.secure_card_number = encryptedCardNumber;
-        secureCardData.secure_card_cvv = encryptedCvv;
-      }
+	  secureCardData.secure_card_data_key_reference = publickeyId;
+	  secureCardData.secure_card_number = encryptedCardNumber;
+	  secureCardData.secure_card_cvv = encryptedCvv;
       return JSON.stringify(secureCardData);
     }
     function iOSSubmit() {
@@ -847,61 +868,86 @@
     .top-margin-small {
       margin-top: 10px;
     }
+
+    .deny-error {
+       margin-top: 80px;
+       font-size: large;
+     }
+
+     .custom-addon {
+     	background-color: #fff;
+     	color: darkgrey;
+     }
   </style>
 </head>
 
 <body>
   <div class="container">
 
-    <div class="row top-margin-large">
+  	<div class="row top-margin-large">
       <div class="col-md-9">
-        <label class="error" id="partialCardNumberError" />
+      	<h1 class="text-center">Card Details</h1>
       </div>
     </div>
 
-    <div class="row">
+    <div class="row top-margin-large">
       <div class="col-md-9">
         <div class="input-group">
-          <input id="input-credit-card" type="tel" class="input-lg form-control cc-number" placeholder="CARD NUMBER" required maxlength="20"
+          <input id="input-credit-card" type="tel" class="input-lg form-control cc-number no-border-right" placeholder="CARD NUMBER" required maxlength="20"
             onkeyup="value=value.replace(/[^\d\s\*]/g,'')" />
-          <span class=" cc-brand input-group-addon"></span>
+          <span class=" cc-brand input-group-addon custom-addon"><i class="fa fa-credit-card fa-2x"></i></span>
         </div>
       </div>
     </div>
 
     <div class="row top-margin-small">
-      <div class="col-md-3 col-sm-3 col-xs-3">
-        <label for="input-exp-date" class="control-label "><label class="error" id="expDateError"></label></label>
-      </div>
-
-      <div class="col-md-3 col-sm-3 col-xs-3">
-        <label for="input-cvv" class="control-label "><label class="error" id="cvvError"></label></label>
-      </div>
-
-      <div class="col-md-3 col-sm-3 col-xs-3">
-        <label for="input-avs" class="control-label "><label class="error" id="avsError"></label></label>
+      <div class="col-md-9 text-center">
+        <label class="error" id="partialCardNumberError" />
       </div>
     </div>
 
-    <div class="row top-margin">
+    <div class="row top-margin-large">
       <div class="col-md-3 col-sm-3 col-xs-3">
-        <input id="input-exp-date" type="tel" class="input-lg form-control cc-exp" autocomplete="off" placeholder="MMYY" required maxlength="4">
+	    <div class="input-group">
+	      	<span class="input-group-addon custom-addon"><i class="fa fa-calendar-o fa-2x"></i></span>
+	        <input id="input-exp-date" type="tel" class="input-lg form-control cc-exp" autocomplete="off" placeholder="MMYY" required maxlength="4">
+        </div>
       </div>
 
-      <div class="col-md-3 col-sm-3 col-xs-3">
-        <input id="input-cvv" type="tel" class="input-lg  form-control cc-cvv" autocomplete="off" placeholder="CVV" required maxlength="4"
-          onkeyup="value=value.replace(/[^\d\*]/g,'')">
+      <div class="col-md-2 col-sm-2 col-xs-2">
+	      <div class="input-group">
+	      	<span class="input-group-addon custom-addon"><i class="fa fa-lock fa-2x"></i></span>
+	        <input id="input-cvv" type="tel" class="input-lg  form-control cc-cvv" autocomplete="off" placeholder="CVV" required maxlength="4"
+	          onkeyup="value=value.replace(/[^\d\*]/g,'')">
+          </div>
       </div>
 
-      <div class="col-md-3 col-sm-3 col-xs-3">
-        <input id="input-avs" type="text" class="input-lg form-control cc-avs" autocomplete="off" placeholder="AVS" required maxlength="10"
-          onkeyup="value=value.replace(/[^\d\s^a-zA-Z^-]/g,'')">
+      <div class="col-md-4 col-sm-4 col-xs-4">
+	      <div class="input-group">
+	      	<span class="input-group-addon custom-addon"><i class="fa fa-map-marker fa-2x"></i></span>
+	        <input id="input-avs" type="text" class="input-lg form-control cc-avs" autocomplete="off" placeholder="AVS" required maxlength="10"
+	          onkeyup="value=value.replace(/[^\d\s^a-zA-Z^-]/g,'')">
+          </div>
+      </div>
+    </div>
+
+    <div class="row top-margin-small">
+      <div class="col-md-3 col-sm-3 col-xs-3 text-center">
+        <label for="input-exp-date" class="control-label "><label class="error" id="expDateError"></label></label>
+      </div>
+
+      <div class="col-md-2 col-sm-2 col-xs-2 text-center">
+        <label for="input-cvv" class="control-label "><label class="error" id="cvvError"></label></label>
+      </div>
+
+      <div class="col-md-4 col-sm-4 col-xs-4 text-center">
+        <label for="input-avs" class="control-label "><label class="error" id="avsError"></label></label>
       </div>
     </div>
 
     <div class="row top-margin-large">
       <div class="col-md-9">
-        <button type="button" id="charge-btn" class="btn btn-lg btn-block btn-success">Pay</button>
+        <button type="button" id="charge-btn" class="btn btn-lg btn-block btn-success">CHARGE</button>
       </div>
     </div>
 
