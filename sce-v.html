@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <!-- local call -->
   <link rel="stylesheet" type="text/css" href="bootstrap-mixed.min.css">
   <script src="jquery-mixed.min.js"></script>
@@ -879,6 +879,10 @@
      	background-color: #fff;
      	color: darkgrey;
      }
+
+     #charge-btn {
+     	line-height: 2;
+     }
   </style>
 </head>
 
@@ -886,13 +890,13 @@
   <div class="container">
 
   	<div class="row top-margin-large">
-      <div class="col-md-9">
+      <div class="col-md-9 col-sm-10 col-xs-12">
       	<h1 class="text-center">Card Details</h1>
       </div>
     </div>
 
     <div class="row top-margin-large">
-      <div class="col-md-9">
+      <div class="col-md-9 col-sm-10 col-xs-12">
         <div class="input-group">
           <input id="input-credit-card" type="tel" class="input-lg form-control cc-number no-border-right" placeholder="CARD NUMBER" required maxlength="20"
             onkeyup="value=value.replace(/[^\d\s\*]/g,'')" />
@@ -908,14 +912,14 @@
     </div>
 
     <div class="row top-margin-large">
-      <div class="col-md-3 col-sm-4 col-xs-4">
+      <div class="col-md-3 col-sm-3 col-xs-4">
 	    <div class="input-group">
 	      	<span class="input-group-addon custom-addon"><i class="fa fa-calendar-o fa-2x"></i></span>
 	        <input id="input-exp-date" type="tel" class="input-lg form-control cc-exp" autocomplete="off" placeholder="MMYY" required maxlength="4">
         </div>
       </div>
 
-      <div class="col-md-2 col-sm-4 col-xs-4">
+      <div class="col-md-2 col-sm-3 col-xs-4">
 	      <div class="input-group">
 	      	<span class="input-group-addon custom-addon"><i class="fa fa-lock fa-2x"></i></span>
 	        <input id="input-cvv" type="tel" class="input-lg  form-control cc-cvv" autocomplete="off" placeholder="CVV" required maxlength="4"
@@ -933,11 +937,11 @@
     </div>
 
     <div class="row top-margin-small">
-      <div class="col-md-3 col-sm-4 col-xs-4 text-center form-error">
+      <div class="col-md-3 col-sm-3 col-xs-4 text-center form-error">
         <label for="input-exp-date" class="control-label "><label class="error" id="expDateError"></label></label>
       </div>
 
-      <div class="col-md-2 col-sm-4 col-xs-4 text-center form-error">
+      <div class="col-md-2 col-sm-3 col-xs-4 text-center form-error">
         <label for="input-cvv" class="control-label "><label class="error" id="cvvError"></label></label>
       </div>
 
@@ -946,13 +950,13 @@
       </div>
     </div>
 
-    <div class="col-md-9 text-center deny-error"><label class="error" id="denyError"></label></div>
-
     <div class="row top-margin-large">
-      <div class="col-md-9">
+      <div class="col-md-9 col-sm-10 col-xs-12">
         <button type="button" id="charge-btn" class="btn btn-lg btn-block btn-success">CHARGE</button>
       </div>
     </div>
+
+    <div class="col-md-9 col-sm-10 col-xs-12 text-center deny-error"><label class="error" id="denyError"></label></div>
 
   </div>
 </body>
