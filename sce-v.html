@@ -489,7 +489,7 @@
         $('.cc-cvv').toggleInputError(!$.payment.validateCardCVC(cvvTemp, cardType));
 
         //if any error within form, then do nothing
-        if ($('.form-error .error').text() == '') {
+        if ($('.form-error .error').text() == '' && $(".form-error .error:contains('INVALID')").length == 0 && $(".form-error .error:contains('REQUIRED')").length == 0) {
           console.log(getSecureCardData());
           $('#denyError').text('');
           if (isMobile) {
