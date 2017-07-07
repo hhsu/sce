@@ -883,81 +883,87 @@
      #charge-btn {
       line-height: 2;
      }
+
+     body {
+      display: table;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+    }
+
+    .vertical-center {
+      display: table-cell;
+      vertical-align: middle;
+    }
+
   </style>
 </head>
 
 <body>
-  <div class="container">
+  <div class="vertical-center">
+    <div class="container">
 
-    <div class="row top-margin-large">
-      <div class="col-md-12 col-sm-12 col-xs-12">
-        <h1 class="text-center">Card Details</h1>
-      </div>
-    </div>
-
-    <div class="row top-margin-large">
-      <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="input-group">
-          <input id="input-credit-card" type="tel" class="input-lg form-control cc-number no-border-right" placeholder="CARD NUMBER" required maxlength="20"
-            onkeyup="value=value.replace(/[^\d\s\*]/g,'')" />
-          <span class=" cc-brand input-group-addon custom-addon"><i class="fa fa-credit-card fa-2x"></i></span>
-        </div>
-      </div>
-    </div>
-
-    <div class="row top-margin-small">
-      <div class="col-md-12 text-center form-error">
-        <label class="error" id="partialCardNumberError" />
-      </div>
-    </div>
-
-    <div class="row top-margin-large">
-      <div class="col-md-4 col-sm-4 col-xs-4">
-      <div class="input-group">
-          <span class="input-group-addon custom-addon"><i class="fa fa-calendar-o fa-2x"></i></span>
-          <input id="input-exp-date" type="tel" class="input-lg form-control cc-exp" placeholder="MMYY" required maxlength="4">
+      <div class="row top-margin-large">
+        <div class="col-md-12 col-sm-12 col-xs-12">
         </div>
       </div>
 
-      <div class="col-md-4 col-sm-4 col-xs-4">
-        <div class="input-group">
-          <span class="input-group-addon custom-addon"><i class="fa fa-lock fa-2x"></i></span>
-          <input id="input-cvv" type="tel" class="input-lg  form-control cc-cvv" placeholder="CVV" required maxlength="4"
-            onkeyup="value=value.replace(/[^\d\*]/g,'')">
+      <div class="row top-margin-large">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="input-group">
+            <input id="input-credit-card" type="tel" class="input-lg form-control cc-number no-border-right" placeholder="CARD NUMBER" required maxlength="20"
+              onkeyup="value=value.replace(/[^\d\s\*]/g,'')" />
+            <span class=" cc-brand input-group-addon custom-addon"><i class="fa fa-credit-card fa-2x"></i></span>
           </div>
-      </div>
-
-      <div class="col-md-4 col-sm-4 col-xs-4">
-        <div class="input-group">
-          <span class="input-group-addon custom-addon"><i class="fa fa-map-marker fa-2x"></i></span>
-          <input id="input-avs" type="text" class="input-lg form-control cc-avs" placeholder="AVS" required maxlength="10"
-            onkeyup="value=value.replace(/[^\d\s^a-zA-Z^-]/g,'')">
+          <div class="text-center form-error">
+            <label class="error" id="partialCardNumberError" />
           </div>
+        </div>
       </div>
+
+      <div class="row top-margin-small">
+        <div class="col-md-4 col-sm-4 col-xs-6">
+          <div class="input-group">
+            <span class="input-group-addon custom-addon"><i class="fa fa-calendar-o fa-2x"></i></span>
+            <input id="input-exp-date" type="tel" class="input-lg form-control cc-exp" placeholder="MMYY" required maxlength="4">
+          </div>
+          <div class="text-center form-error">
+            <label for="input-exp-date" class="control-label "><label class="error" id="expDateError"></label></label>
+          </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4 col-xs-6">
+          <div class="input-group">
+            <span class="input-group-addon custom-addon"><i class="fa fa-lock fa-2x"></i></span>
+            <input id="input-cvv" type="tel" class="input-lg  form-control cc-cvv" placeholder="CVV" required maxlength="4"
+              onkeyup="value=value.replace(/[^\d\*]/g,'')">
+            </div>
+            <div class="text-center form-error">
+            <label for="input-cvv" class="control-label "><label class="error" id="cvvError"></label></label>
+          </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <div class="input-group">
+            <span class="input-group-addon custom-addon"><i class="fa fa-map-marker fa-2x"></i></span>
+            <input id="input-avs" type="text" class="input-lg form-control cc-avs" placeholder="AVS" required maxlength="10"
+              onkeyup="value=value.replace(/[^\d\s^a-zA-Z^-]/g,'')">
+            </div>
+            <div class="text-center form-error">
+            <label for="input-avs" class="control-label "><label class="error" id="avsError"></label></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row top-margin-large">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <button type="button" id="charge-btn" class="btn btn-lg btn-block btn-success">CHARGE</button>
+        </div>
+      </div>
+
+      <div class="col-md-12 col-sm-12 col-xs-12 text-center deny-error"><label class="error" id="denyError"></label></div>
+
     </div>
-
-    <div class="row top-margin-small">
-      <div class="col-md-4 col-sm-4 col-xs-4 text-center form-error">
-        <label for="input-exp-date" class="control-label "><label class="error" id="expDateError"></label></label>
-      </div>
-
-      <div class="col-md-4 col-sm-4 col-xs-4 text-center form-error">
-        <label for="input-cvv" class="control-label "><label class="error" id="cvvError"></label></label>
-      </div>
-
-      <div class="col-md-4 col-sm-4 col-xs-4 text-center form-error">
-        <label for="input-avs" class="control-label "><label class="error" id="avsError"></label></label>
-      </div>
-    </div>
-
-    <div class="row top-margin-large">
-      <div class="col-md-12 col-sm-12 col-xs-12">
-        <button type="button" id="charge-btn" class="btn btn-lg btn-block btn-success">CHARGE</button>
-      </div>
-    </div>
-
-    <div class="col-md-12 col-sm-12 col-xs-12 text-center deny-error"><label class="error" id="denyError"></label></div>
-
   </div>
 </body>
 
