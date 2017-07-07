@@ -531,6 +531,12 @@
 
         var cardType = $.payment.cardType(cardNumber);
 
+        if(cardType == 'amex'){
+          $('#input-cvv').attr('maxlength', 4);
+        }else{
+          $('#input-cvv').attr('maxlength', 3);
+        }
+
         cardTypeG = cardType;
         var brandShow = '';
         var encryptedCardNumberElement = {
