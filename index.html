@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+<!--
+  ~ //////////////////////////////////////////////////////////////////////////////
+  ~ //
+  ~ // Copyright (c) 2017 ROAM, Inc. All rights reserved.
+  ~ //
+  ~ //////////////////////////////////////////////////////////////////////////////
+  -->
+
 <html>
 
 <head>
@@ -281,6 +289,61 @@
       return window.jscd;
     }
 
+    // Handle orientation changes for Android
+    function addOrientationChangeListener() {
+        var previousOrientation = window.orientation;
+        var checkOrientation = function(){
+            if(window.orientation !== previousOrientation){
+                console.log("orientation changed");
+                previousOrientation = window.orientation;
+                localStorage.setItem(("savekey_pan"), getPanText());
+                localStorage.setItem(("savekey_exp"), getExpText());
+                localStorage.setItem(("savekey_avs"), getAVSText());
+                localStorage.setItem(("savekey_cvv"), getCVVText());
+                localStorage.setItem(("savekey_encrypted_pan"), encryptedCardNumber);
+                localStorage.setItem(("savekey_encrypted_cvv"), encryptedCvv);
+                localStorage.setItem(("savekey_publickeyid"), publickeyId);
+                console.log("savedPan::"+localStorage.getItem("savekey_pan"));
+                console.log("savedExp::"+localStorage.getItem("savekey_exp"));
+                console.log("savedAVS::"+localStorage.getItem("savekey_avs"));
+                console.log("savedCVV::"+localStorage.getItem("savekey_cvv"));
+                console.log("savedPublicKeyId::"+localStorage.getItem("savekey_publickeyid"));
+            } else {
+                console.log("orientation not changed");
+            }
+        };
+        window.addEventListener("resize", checkOrientation, false);
+        window.addEventListener("orientationchange", checkOrientation, false);
+    };
+
+    window.onload = function () {
+        //restore only if saved value exists
+        if(localStorage.getItem("savekey_pan") != null) {
+          document.getElementById('input-credit-card').value = localStorage.getItem("savekey_pan");
+        }
+        if(localStorage.getItem("savekey_exp") != null) {
+          document.getElementById('input-exp-date').value = localStorage.getItem("savekey_exp");
+        }
+        if(localStorage.getItem("savekey_avs") != null) {
+          document.getElementById('input-cvv').value = localStorage.getItem("savekey_avs");
+        }
+        if(localStorage.getItem("savekey_cvv") != null) {
+          document.getElementById('input-avs').value = localStorage.getItem("savekey_cvv");
+        }
+        if(localStorage.getItem("savekey_encrypted_pan") != null) {
+          encryptedCardNumber = localStorage.getItem("savekey_encrypted_pan");
+        }
+        if(localStorage.getItem("savekey_encrypted_cvv") != null) {
+          encryptedCvv = localStorage.getItem("savekey_encrypted_cvv");
+        }
+        if(localStorage.getItem("savekey_publickeyid") != null) {
+          publickeyId = localStorage.getItem("savekey_publickeyid");
+        }
+        // clear localstorage once saved data is restored
+        console.log("clearing localstorage");
+        localStorage.clear()
+    }
+
 
     var unmaskedFirstIndex = 6;
     var unmaskedLastIndex = 4;
@@ -459,6 +522,10 @@
       var isMobile = osinfo.mobile;
       var os = osinfo.os;
 
+      if (os == 'Android') {
+        addOrientationChangeListener();
+      }
+
       $("#charge-btn").click(function (e) {
         e.preventDefault();
         //validation
@@ -466,6 +533,10 @@
         var expdate = getExpText();
         var avs = getAVSText();
         var cvv = getCVVText();
+        console.log("onclick, cardNumber::"+cardNumber);
+        console.log("onclick, expdate::"+expdate);
+        console.log("onclick, avs::"+avs);
+        console.log("onclick, cvv::"+cvv);
         var cardType = $.payment.cardType(cardNumber);
         if (cardNumber.length == 0) {
           $('.cc-number').toggleInputError(true);
@@ -861,6 +932,7 @@
     }
 
     function AndroidSubmit(secureData, expdate, avs, publickeyId) {
+      console.log("onSubmit, sceureDate::"+secureData);
       Android.showToast('Charge Now!');
       //set publickeyId to secureData.Id?
       Android.chargeNow(secureData, expdate, avs, publickeyId);

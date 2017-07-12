@@ -508,12 +508,23 @@
       $('.cc-exp').payment('formatCardExpiry');
       // $('.cc-cvv').payment('formatCardCVC');
       var ccnf = document.getElementById("input-credit-card");
-      var pArr = [];
+      var pArr = [], currCardLen = 0;
       ccnf.addEventListener('keyup', function (e) {
         var cardsinfo = {}, validCard = false, cardLength = 16, keyEntered;
         var cardNumber = ccnf.value;
         var expdate = getExpText();
         // var cvv = getCVVText();
+
+        if (cardNumber.length < currCardLen) {
+            $('#input-credit-card').val("");
+            sum = 0;
+            positionArr = [];
+            currCardLen = 0;
+            return;
+        } else {
+          currCardLen = cardNumber.length;
+        }
+
         var encrypt = new JSEncrypt();
         encrypt.setPublicKey(publickey);
 
@@ -642,17 +653,6 @@
         $('input.cc-number').toggleInputError(!luhnValid || !isExistedLength);
       }, false);
 
-      //backspace remove all context inside card number input
-      $('#input-credit-card').on("keydown", function (e) {
-        e = e ? e : event;
-        if (e.keyCode == 8) {
-          $(this).val("");
-          sum = 0;
-          positionArr = [];
-        }
-      });
-
-
       var ced = document.getElementById("input-exp-date");
       ced.addEventListener('blur', function (e) {
         var valid = $.payment.validateCardExpiry($('.cc-exp').payment('cardExpiryVal'));
@@ -677,10 +677,19 @@
         return this;
       };
 
-      var cvvArr = [], cvvTemp = ''
+      var cvvArr = [], cvvTemp = '', currCvvLen = 0;
       var cvv = document.getElementById("input-cvv");
       cvv.addEventListener('keyup', function (e) {
         var cvvValue = cvv.value;
+        if (cvvValue.length < currCvvLen) {
+            $('.cc-cvv').val("");
+            cvvTemp = "";
+            currCvvLen = 0;
+            return;
+        } else {
+          currCvvLen = cvvValue.length;
+        }
+
         var encrypt = new JSEncrypt();
         encrypt.setPublicKey(publickey);
         var encryptedCvvElement = {
@@ -765,15 +774,6 @@
       avsInput.addEventListener('keyup', function (e) {
         activeAddon(avsInput.value, $('#input-avs'));
       })
-
-      //backspace remove all context inside card number input
-      $('#input-cvv').on("keydown", function (e) {
-        e = e ? e : event;
-        if (e.keyCode == 8) {
-          $(this).val("");
-          cvvTemp = '';
-        }
-      });
 
       cvv.addEventListener('click', function (e) {
         $('.cc-cvv').focusEnd();
