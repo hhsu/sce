@@ -6,10 +6,10 @@
   ~ //
   ~ //////////////////////////////////////////////////////////////////////////////
   -->
-
 <html>
 
 <head>
+  <meta charset="utf-8" name="sce-version" value=23>
   <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <!-- local call -->
   <link rel="stylesheet" type="text/css" href="bootstrap-mixed.min.css">
@@ -36,25 +36,8 @@
         // http://www-cs-students.stanford.edu/~tjw/jsbn/
         //
         // ---
-        function () { var t = function (t, r, s) { var n = new oe, o = t >> 1; this.e = parseInt(r, 16); var h = new e(r, 16), a = this, u = function () { var r = function () { if (a.p.compareTo(a.q) <= 0) { var t = a.p; a.p = a.q, a.q = t } var i = a.p.subtract(e.ONE), r = a.q.subtract(e.ONE), n = i.multiply(r); 0 == n.gcd(h).compareTo(e.ONE) ? (a.n = a.p.multiply(a.q), a.d = h.modInverse(n), a.dmp1 = a.d.mod(i), a.dmq1 = a.d.mod(r), a.coeff = a.q.modInverse(a.p), setTimeout(function () { s() }, 0)) : setTimeout(u, 0) }, c = function () { a.q = i(), a.q.fromNumberAsync(o, 1, n, function () { a.q.subtract(e.ONE).gcda(h, function (t) { 0 == t.compareTo(e.ONE) && a.q.isProbablePrime(10) ? setTimeout(r, 0) : setTimeout(c, 0) }) }) }, f = function () { a.p = i(), a.p.fromNumberAsync(t - o, 1, n, function () { a.p.subtract(e.ONE).gcda(h, function (t) { 0 == t.compareTo(e.ONE) && a.p.isProbablePrime(10) ? setTimeout(c, 0) : setTimeout(f, 0) }) }) }; setTimeout(f, 0) }; setTimeout(u, 0) }; ue.prototype.generateAsync = t; var r = function (t, e) { var i = this.s < 0 ? this.negate() : this.clone(), r = t.s < 0 ? t.negate() : t.clone(); if (i.compareTo(r) < 0) { var s = i; i = r, r = s } var n = i.getLowestSetBit(), o = r.getLowestSetBit(); if (0 > o) return void e(i); o > n && (o = n), o > 0 && (i.rShiftTo(o, i), r.rShiftTo(o, r)); var h = function () { (n = i.getLowestSetBit()) > 0 && i.rShiftTo(n, i), (n = r.getLowestSetBit()) > 0 && r.rShiftTo(n, r), i.compareTo(r) >= 0 ? (i.subTo(r, i), i.rShiftTo(1, i)) : (r.subTo(i, r), r.rShiftTo(1, r)), i.signum() > 0 ? setTimeout(h, 0) : (o > 0 && r.lShiftTo(o, r), setTimeout(function () { e(r) }, 0)) }; setTimeout(h, 10) }; e.prototype.gcda = r; var s = function (t, i, r, s) { if ("number" == typeof i) if (2 > t) this.fromInt(1); else { this.fromNumber(t, r), this.testBit(t - 1) || this.bitwiseTo(e.ONE.shiftLeft(t - 1), ht, this), this.isEven() && this.dAddOffset(1, 0); var n = this, o = function () { n.dAddOffset(2, 0), n.bitLength() > t && n.subTo(e.ONE.shiftLeft(t - 1), n), n.isProbablePrime(i) ? setTimeout(function () { s() }, 0) : setTimeout(o, 0) }; setTimeout(o, 0) } else { var h = new Array, a = 7 & t; h.length = (t >> 3) + 1, i.nextBytes(h), a > 0 ? h[0] &= (1 << a) - 1 : h[0] = 0, this.fromString(h, 256) } }; e.prototype.fromNumberAsync = s }(); var Le = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/", qe = "=", Ce = Ce || {}; Ce.env = Ce.env || {}; var He = Ce, je = Object.prototype, ke = "[object Function]", Fe = ["toString", "valueOf"]; Ce.env.parseUA = function (t) { var e, i = function (t) { var e = 0; return parseFloat(t.replace(/\./g, function () { return 1 == e++ ? "" : "." })) }, r = navigator, s = { ie: 0, opera: 0, gecko: 0, webkit: 0, chrome: 0, mobile: null, air: 0, ipad: 0, iphone: 0, ipod: 0, ios: null, android: 0, webos: 0, caja: r && r.cajaVersion, secure: !1, os: null }, n = t || navigator && navigator.userAgent, o = window && window.location, h = o && o.href; return s.secure = h && 0 === h.toLowerCase().indexOf("https"), n && (/windows|win32/i.test(n) ? s.os = "windows" : /macintosh/i.test(n) ? s.os = "macintosh" : /rhino/i.test(n) && (s.os = "rhino"), /KHTML/.test(n) && (s.webkit = 1), e = n.match(/AppleWebKit\/([^\s]*)/), e && e[1] && (s.webkit = i(e[1]), / Mobile\//.test(n) ? (s.mobile = "Apple", e = n.match(/OS ([^\s]*)/), e && e[1] && (e = i(e[1].replace("_", "."))), s.ios = e, s.ipad = s.ipod = s.iphone = 0, e = n.match(/iPad|iPod|iPhone/), e && e[0] && (s[e[0].toLowerCase()] = s.ios)) : (e = n.match(/NokiaN[^\/]*|Android \d\.\d|webOS\/\d\.\d/), e && (s.mobile = e[0]), /webOS/.test(n) && (s.mobile = "WebOS", e = n.match(/webOS\/([^\s]*);/), e && e[1] && (s.webos = i(e[1]))), / Android/.test(n) && (s.mobile = "Android", e = n.match(/Android ([^\s]*);/), e && e[1] && (s.android = i(e[1])))), e = n.match(/Chrome\/([^\s]*)/), e && e[1] ? s.chrome = i(e[1]) : (e = n.match(/AdobeAIR\/([^\s]*)/), e && (s.air = e[0]))), s.webkit || (e = n.match(/Opera[\s\/]([^\s]*)/), e && e[1] ? (s.opera = i(e[1]), e = n.match(/Version\/([^\s]*)/), e && e[1] && (s.opera = i(e[1])), e = n.match(/Opera Mini[^;]*/), e && (s.mobile = e[0])) : (e = n.match(/MSIE\s([^;]*)/), e && e[1] ? s.ie = i(e[1]) : (e = n.match(/Gecko\/([^\s]*)/), e && (s.gecko = 1, e = n.match(/rv:([^\s\)]*)/), e && e[1] && (s.gecko = i(e[1]))))))), s }, Ce.env.ua = Ce.env.parseUA(), Ce.isFunction = function (t) { return "function" == typeof t || je.toString.apply(t) === ke }, Ce._IEEnumFix = Ce.env.ua.ie ? function (t, e) { var i, r, s; for (i = 0; i < Fe.length; i += 1)r = Fe[i], s = e[r], He.isFunction(s) && s != je[r] && (t[r] = s) } : function () { }, Ce.extend = function (t, e, i) { if (!e || !t) throw new Error("extend failed, please check that all dependencies are included."); var r, s = function () { }; if (s.prototype = e.prototype, t.prototype = new s, t.prototype.constructor = t, t.superclass = e.prototype, e.prototype.constructor == je.constructor && (e.prototype.constructor = e), i) { for (r in i) He.hasOwnProperty(i, r) && (t.prototype[r] = i[r]); He._IEEnumFix(t.prototype, i) } },/*
- * asn1.js - ASN.1 DER encoder classes
- *
- * Copyright (c) 2013 Kenji Urushima (kenji.urushima@gmail.com)
- *
- * This software is licensed under the terms of the MIT License.
- * http://kjur.github.com/jsrsasign/license
- *
- * The above copyright and license notice shall be 
- * included in all copies or substantial portions of the Software.
- */
-          /**
-           * @fileOverview
-           * @name asn1-1.0.js
-           * @author Kenji Urushima kenji.urushima@gmail.com
-           * @version 1.0.2 (2013-May-30)
-           * @since 2.1
-           * @license <a href="http://kjur.github.io/jsrsasign/license/">MIT License</a>
-           */
+        function () { var t = function (t, r, s) { var n = new oe, o = t >> 1; this.e = parseInt(r, 16); var h = new e(r, 16), a = this, u = function () { var r = function () { if (a.p.compareTo(a.q) <= 0) { var t = a.p; a.p = a.q, a.q = t } var i = a.p.subtract(e.ONE), r = a.q.subtract(e.ONE), n = i.multiply(r); 0 == n.gcd(h).compareTo(e.ONE) ? (a.n = a.p.multiply(a.q), a.d = h.modInverse(n), a.dmp1 = a.d.mod(i), a.dmq1 = a.d.mod(r), a.coeff = a.q.modInverse(a.p), setTimeout(function () { s() }, 0)) : setTimeout(u, 0) }, c = function () { a.q = i(), a.q.fromNumberAsync(o, 1, n, function () { a.q.subtract(e.ONE).gcda(h, function (t) { 0 == t.compareTo(e.ONE) && a.q.isProbablePrime(10) ? setTimeout(r, 0) : setTimeout(c, 0) }) }) }, f = function () { a.p = i(), a.p.fromNumberAsync(t - o, 1, n, function () { a.p.subtract(e.ONE).gcda(h, function (t) { 0 == t.compareTo(e.ONE) && a.p.isProbablePrime(10) ? setTimeout(c, 0) : setTimeout(f, 0) }) }) }; setTimeout(f, 0) }; setTimeout(u, 0) }; ue.prototype.generateAsync = t; var r = function (t, e) { var i = this.s < 0 ? this.negate() : this.clone(), r = t.s < 0 ? t.negate() : t.clone(); if (i.compareTo(r) < 0) { var s = i; i = r, r = s } var n = i.getLowestSetBit(), o = r.getLowestSetBit(); if (0 > o) return void e(i); o > n && (o = n), o > 0 && (i.rShiftTo(o, i), r.rShiftTo(o, r)); var h = function () { (n = i.getLowestSetBit()) > 0 && i.rShiftTo(n, i), (n = r.getLowestSetBit()) > 0 && r.rShiftTo(n, r), i.compareTo(r) >= 0 ? (i.subTo(r, i), i.rShiftTo(1, i)) : (r.subTo(i, r), r.rShiftTo(1, r)), i.signum() > 0 ? setTimeout(h, 0) : (o > 0 && r.lShiftTo(o, r), setTimeout(function () { e(r) }, 0)) }; setTimeout(h, 10) }; e.prototype.gcda = r; var s = function (t, i, r, s) { if ("number" == typeof i) if (2 > t) this.fromInt(1); else { this.fromNumber(t, r), this.testBit(t - 1) || this.bitwiseTo(e.ONE.shiftLeft(t - 1), ht, this), this.isEven() && this.dAddOffset(1, 0); var n = this, o = function () { n.dAddOffset(2, 0), n.bitLength() > t && n.subTo(e.ONE.shiftLeft(t - 1), n), n.isProbablePrime(i) ? setTimeout(function () { s() }, 0) : setTimeout(o, 0) }; setTimeout(o, 0) } else { var h = new Array, a = 7 & t; h.length = (t >> 3) + 1, i.nextBytes(h), a > 0 ? h[0] &= (1 << a) - 1 : h[0] = 0, this.fromString(h, 256) } }; e.prototype.fromNumberAsync = s }(); var Le = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/", qe = "=", Ce = Ce || {}; Ce.env = Ce.env || {}; var He = Ce, je = Object.prototype, ke = "[object Function]", Fe = ["toString", "valueOf"]; Ce.env.parseUA = function (t) { var e, i = function (t) { var e = 0; return parseFloat(t.replace(/\./g, function () { return 1 == e++ ? "" : "." })) }, r = navigator, s = { ie: 0, opera: 0, gecko: 0, webkit: 0, chrome: 0, mobile: null, air: 0, ipad: 0, iphone: 0, ipod: 0, ios: null, android: 0, webos: 0, caja: r && r.cajaVersion, secure: !1, os: null }, n = t || navigator && navigator.userAgent, o = window && window.location, h = o && o.href; return s.secure = h && 0 === h.toLowerCase().indexOf("https"), n && (/windows|win32/i.test(n) ? s.os = "windows" : /macintosh/i.test(n) ? s.os = "macintosh" : /rhino/i.test(n) && (s.os = "rhino"), /KHTML/.test(n) && (s.webkit = 1), e = n.match(/AppleWebKit\/([^\s]*)/), e && e[1] && (s.webkit = i(e[1]), / Mobile\//.test(n) ? (s.mobile = "Apple", e = n.match(/OS ([^\s]*)/), e && e[1] && (e = i(e[1].replace("_", "."))), s.ios = e, s.ipad = s.ipod = s.iphone = 0, e = n.match(/iPad|iPod|iPhone/), e && e[0] && (s[e[0].toLowerCase()] = s.ios)) : (e = n.match(/NokiaN[^\/]*|Android \d\.\d|webOS\/\d\.\d/), e && (s.mobile = e[0]), /webOS/.test(n) && (s.mobile = "WebOS", e = n.match(/webOS\/([^\s]*);/), e && e[1] && (s.webos = i(e[1]))), / Android/.test(n) && (s.mobile = "Android", e = n.match(/Android ([^\s]*);/), e && e[1] && (s.android = i(e[1])))), e = n.match(/Chrome\/([^\s]*)/), e && e[1] ? s.chrome = i(e[1]) : (e = n.match(/AdobeAIR\/([^\s]*)/), e && (s.air = e[0]))), s.webkit || (e = n.match(/Opera[\s\/]([^\s]*)/), e && e[1] ? (s.opera = i(e[1]), e = n.match(/Version\/([^\s]*)/), e && e[1] && (s.opera = i(e[1])), e = n.match(/Opera Mini[^;]*/), e && (s.mobile = e[0])) : (e = n.match(/MSIE\s([^;]*)/), e && e[1] ? s.ie = i(e[1]) : (e = n.match(/Gecko\/([^\s]*)/), e && (s.gecko = 1, e = n.match(/rv:([^\s\)]*)/), e && e[1] && (s.gecko = i(e[1]))))))), s }, Ce.env.ua = Ce.env.parseUA(), Ce.isFunction = function (t) { return "function" == typeof t || je.toString.apply(t) === ke }, Ce._IEEnumFix = Ce.env.ua.ie ? function (t, e) { var i, r, s; for (i = 0; i < Fe.length; i += 1)r = Fe[i], s = e[r], He.isFunction(s) && s != je[r] && (t[r] = s) } : function () { }, Ce.extend = function (t, e, i) { if (!e || !t) throw new Error("extend failed, please check that all dependencies are included."); var r, s = function () { }; if (s.prototype = e.prototype, t.prototype = new s, t.prototype.constructor = t, t.superclass = e.prototype, e.prototype.constructor == je.constructor && (e.prototype.constructor = e), i) { for (r in i) He.hasOwnProperty(i, r) && (t.prototype[r] = i[r]); He._IEEnumFix(t.prototype, i) } },
+          
           "undefined" != typeof KJUR && KJUR || (KJUR = {}), "undefined" != typeof KJUR.asn1 && KJUR.asn1 || (KJUR.asn1 = {}), KJUR.asn1.ASN1Util = new function () { this.integerToByteHex = function (t) { var e = t.toString(16); return e.length % 2 == 1 && (e = "0" + e), e }, this.bigIntToMinTwosComplementsHex = function (t) { var i = t.toString(16); if ("-" != i.substr(0, 1)) i.length % 2 == 1 ? i = "0" + i : i.match(/^[0-7]/) || (i = "00" + i); else { var r = i.substr(1), s = r.length; s % 2 == 1 ? s += 1 : i.match(/^[0-7]/) || (s += 2); for (var n = "", o = 0; s > o; o++)n += "f"; var h = new e(n, 16), a = h.xor(t).add(e.ONE); i = a.toString(16).replace(/^-/, "") } return i }, this.getPEMStringFromHex = function (t, e) { var i = CryptoJS.enc.Hex.parse(t), r = CryptoJS.enc.Base64.stringify(i), s = r.replace(/(.{64})/g, "$1\r\n"); return s = s.replace(/\r\n$/, ""), "-----BEGIN " + e + "-----\r\n" + s + "\r\n-----END " + e + "-----\r\n" } }, KJUR.asn1.ASN1Object = function () { var t = ""; this.getLengthHexFromValue = function () { if ("undefined" == typeof this.hV || null == this.hV) throw "this.hV is null or undefined."; if (this.hV.length % 2 == 1) throw "value hex must be even length: n=" + t.length + ",v=" + this.hV; var e = this.hV.length / 2, i = e.toString(16); if (i.length % 2 == 1 && (i = "0" + i), 128 > e) return i; var r = i.length / 2; if (r > 15) throw "ASN.1 length too long to represent by 8x: n = " + e.toString(16); var s = 128 + r; return s.toString(16) + i }, this.getEncodedHex = function () { return (null == this.hTLV || this.isModified) && (this.hV = this.getFreshValueHex(), this.hL = this.getLengthHexFromValue(), this.hTLV = this.hT + this.hL + this.hV, this.isModified = !1), this.hTLV }, this.getValueHex = function () { return this.getEncodedHex(), this.hV }, this.getFreshValueHex = function () { return "" } }, KJUR.asn1.DERAbstractString = function (t) { KJUR.asn1.DERAbstractString.superclass.constructor.call(this); this.getString = function () { return this.s }, this.setString = function (t) { this.hTLV = null, this.isModified = !0, this.s = t, this.hV = stohex(this.s) }, this.setStringHex = function (t) { this.hTLV = null, this.isModified = !0, this.s = null, this.hV = t }, this.getFreshValueHex = function () { return this.hV }, "undefined" != typeof t && ("undefined" != typeof t.str ? this.setString(t.str) : "undefined" != typeof t.hex && this.setStringHex(t.hex)) }, Ce.extend(KJUR.asn1.DERAbstractString, KJUR.asn1.ASN1Object), KJUR.asn1.DERAbstractTime = function (t) { KJUR.asn1.DERAbstractTime.superclass.constructor.call(this); this.localDateToUTC = function (t) { utc = t.getTime() + 6e4 * t.getTimezoneOffset(); var e = new Date(utc); return e }, this.formatDate = function (t, e) { var i = this.zeroPadding, r = this.localDateToUTC(t), s = String(r.getFullYear()); "utc" == e && (s = s.substr(2, 2)); var n = i(String(r.getMonth() + 1), 2), o = i(String(r.getDate()), 2), h = i(String(r.getHours()), 2), a = i(String(r.getMinutes()), 2), u = i(String(r.getSeconds()), 2); return s + n + o + h + a + u + "Z" }, this.zeroPadding = function (t, e) { return t.length >= e ? t : new Array(e - t.length + 1).join("0") + t }, this.getString = function () { return this.s }, this.setString = function (t) { this.hTLV = null, this.isModified = !0, this.s = t, this.hV = stohex(this.s) }, this.setByDateValue = function (t, e, i, r, s, n) { var o = new Date(Date.UTC(t, e - 1, i, r, s, n, 0)); this.setByDate(o) }, this.getFreshValueHex = function () { return this.hV } }, Ce.extend(KJUR.asn1.DERAbstractTime, KJUR.asn1.ASN1Object), KJUR.asn1.DERAbstractStructured = function (t) { KJUR.asn1.DERAbstractString.superclass.constructor.call(this); this.setByASN1ObjectArray = function (t) { this.hTLV = null, this.isModified = !0, this.asn1Array = t }, this.appendASN1Object = function (t) { this.hTLV = null, this.isModified = !0, this.asn1Array.push(t) }, this.asn1Array = new Array, "undefined" != typeof t && "undefined" != typeof t.array && (this.asn1Array = t.array) }, Ce.extend(KJUR.asn1.DERAbstractStructured, KJUR.asn1.ASN1Object), KJUR.asn1.DERBoolean = function () { KJUR.asn1.DERBoolean.superclass.constructor.call(this), this.hT = "01", this.hTLV = "0101ff" }, Ce.extend(KJUR.asn1.DERBoolean, KJUR.asn1.ASN1Object), KJUR.asn1.DERInteger = function (t) { KJUR.asn1.DERInteger.superclass.constructor.call(this), this.hT = "02", this.setByBigInteger = function (t) { this.hTLV = null, this.isModified = !0, this.hV = KJUR.asn1.ASN1Util.bigIntToMinTwosComplementsHex(t) }, this.setByInteger = function (t) { var i = new e(String(t), 10); this.setByBigInteger(i) }, this.setValueHex = function (t) { this.hV = t }, this.getFreshValueHex = function () { return this.hV }, "undefined" != typeof t && ("undefined" != typeof t.bigint ? this.setByBigInteger(t.bigint) : "undefined" != typeof t["int"] ? this.setByInteger(t["int"]) : "undefined" != typeof t.hex && this.setValueHex(t.hex)) }, Ce.extend(KJUR.asn1.DERInteger, KJUR.asn1.ASN1Object), KJUR.asn1.DERBitString = function (t) { KJUR.asn1.DERBitString.superclass.constructor.call(this), this.hT = "03", this.setHexValueIncludingUnusedBits = function (t) { this.hTLV = null, this.isModified = !0, this.hV = t }, this.setUnusedBitsAndHexValue = function (t, e) { if (0 > t || t > 7) throw "unused bits shall be from 0 to 7: u = " + t; var i = "0" + t; this.hTLV = null, this.isModified = !0, this.hV = i + e }, this.setByBinaryString = function (t) { t = t.replace(/0+$/, ""); var e = 8 - t.length % 8; 8 == e && (e = 0); for (var i = 0; e >= i; i++)t += "0"; for (var r = "", i = 0; i < t.length - 1; i += 8) { var s = t.substr(i, 8), n = parseInt(s, 2).toString(16); 1 == n.length && (n = "0" + n), r += n } this.hTLV = null, this.isModified = !0, this.hV = "0" + e + r }, this.setByBooleanArray = function (t) { for (var e = "", i = 0; i < t.length; i++)e += 1 == t[i] ? "1" : "0"; this.setByBinaryString(e) }, this.newFalseArray = function (t) { for (var e = new Array(t), i = 0; t > i; i++)e[i] = !1; return e }, this.getFreshValueHex = function () { return this.hV }, "undefined" != typeof t && ("undefined" != typeof t.hex ? this.setHexValueIncludingUnusedBits(t.hex) : "undefined" != typeof t.bin ? this.setByBinaryString(t.bin) : "undefined" != typeof t.array && this.setByBooleanArray(t.array)) }, Ce.extend(KJUR.asn1.DERBitString, KJUR.asn1.ASN1Object), KJUR.asn1.DEROctetString = function (t) { KJUR.asn1.DEROctetString.superclass.constructor.call(this, t), this.hT = "04" }, Ce.extend(KJUR.asn1.DEROctetString, KJUR.asn1.DERAbstractString), KJUR.asn1.DERNull = function () { KJUR.asn1.DERNull.superclass.constructor.call(this), this.hT = "05", this.hTLV = "0500" }, Ce.extend(KJUR.asn1.DERNull, KJUR.asn1.ASN1Object), KJUR.asn1.DERObjectIdentifier = function (t) { var i = function (t) { var e = t.toString(16); return 1 == e.length && (e = "0" + e), e }, r = function (t) { var r = "", s = new e(t, 10), n = s.toString(2), o = 7 - n.length % 7; 7 == o && (o = 0); for (var h = "", a = 0; o > a; a++)h += "0"; n = h + n; for (var a = 0; a < n.length - 1; a += 7) { var u = n.substr(a, 7); a != n.length - 7 && (u = "1" + u), r += i(parseInt(u, 2)) } return r }; KJUR.asn1.DERObjectIdentifier.superclass.constructor.call(this), this.hT = "06", this.setValueHex = function (t) { this.hTLV = null, this.isModified = !0, this.s = null, this.hV = t }, this.setValueOidString = function (t) { if (!t.match(/^[0-9.]+$/)) throw "malformed oid string: " + t; var e = "", s = t.split("."), n = 40 * parseInt(s[0]) + parseInt(s[1]); e += i(n), s.splice(0, 2); for (var o = 0; o < s.length; o++)e += r(s[o]); this.hTLV = null, this.isModified = !0, this.s = null, this.hV = e }, this.setValueName = function (t) { if ("undefined" == typeof KJUR.asn1.x509.OID.name2oidList[t]) throw "DERObjectIdentifier oidName undefined: " + t; var e = KJUR.asn1.x509.OID.name2oidList[t]; this.setValueOidString(e) }, this.getFreshValueHex = function () { return this.hV }, "undefined" != typeof t && ("undefined" != typeof t.oid ? this.setValueOidString(t.oid) : "undefined" != typeof t.hex ? this.setValueHex(t.hex) : "undefined" != typeof t.name && this.setValueName(t.name)) }, Ce.extend(KJUR.asn1.DERObjectIdentifier, KJUR.asn1.ASN1Object), KJUR.asn1.DERUTF8String = function (t) { KJUR.asn1.DERUTF8String.superclass.constructor.call(this, t), this.hT = "0c" }, Ce.extend(KJUR.asn1.DERUTF8String, KJUR.asn1.DERAbstractString), KJUR.asn1.DERNumericString = function (t) { KJUR.asn1.DERNumericString.superclass.constructor.call(this, t), this.hT = "12" }, Ce.extend(KJUR.asn1.DERNumericString, KJUR.asn1.DERAbstractString), KJUR.asn1.DERPrintableString = function (t) { KJUR.asn1.DERPrintableString.superclass.constructor.call(this, t), this.hT = "13" }, Ce.extend(KJUR.asn1.DERPrintableString, KJUR.asn1.DERAbstractString), KJUR.asn1.DERTeletexString = function (t) { KJUR.asn1.DERTeletexString.superclass.constructor.call(this, t), this.hT = "14" }, Ce.extend(KJUR.asn1.DERTeletexString, KJUR.asn1.DERAbstractString), KJUR.asn1.DERIA5String = function (t) { KJUR.asn1.DERIA5String.superclass.constructor.call(this, t), this.hT = "16" }, Ce.extend(KJUR.asn1.DERIA5String, KJUR.asn1.DERAbstractString), KJUR.asn1.DERUTCTime = function (t) { KJUR.asn1.DERUTCTime.superclass.constructor.call(this, t), this.hT = "17", this.setByDate = function (t) { this.hTLV = null, this.isModified = !0, this.date = t, this.s = this.formatDate(this.date, "utc"), this.hV = stohex(this.s) }, "undefined" != typeof t && ("undefined" != typeof t.str ? this.setString(t.str) : "undefined" != typeof t.hex ? this.setStringHex(t.hex) : "undefined" != typeof t.date && this.setByDate(t.date)) }, Ce.extend(KJUR.asn1.DERUTCTime, KJUR.asn1.DERAbstractTime), KJUR.asn1.DERGeneralizedTime = function (t) { KJUR.asn1.DERGeneralizedTime.superclass.constructor.call(this, t), this.hT = "18", this.setByDate = function (t) { this.hTLV = null, this.isModified = !0, this.date = t, this.s = this.formatDate(this.date, "gen"), this.hV = stohex(this.s) }, "undefined" != typeof t && ("undefined" != typeof t.str ? this.setString(t.str) : "undefined" != typeof t.hex ? this.setStringHex(t.hex) : "undefined" != typeof t.date && this.setByDate(t.date)) }, Ce.extend(KJUR.asn1.DERGeneralizedTime, KJUR.asn1.DERAbstractTime), KJUR.asn1.DERSequence = function (t) { KJUR.asn1.DERSequence.superclass.constructor.call(this, t), this.hT = "30", this.getFreshValueHex = function () { for (var t = "", e = 0; e < this.asn1Array.length; e++) { var i = this.asn1Array[e]; t += i.getEncodedHex() } return this.hV = t, this.hV } }, Ce.extend(KJUR.asn1.DERSequence, KJUR.asn1.DERAbstractStructured), KJUR.asn1.DERSet = function (t) { KJUR.asn1.DERSet.superclass.constructor.call(this, t), this.hT = "31", this.getFreshValueHex = function () { for (var t = new Array, e = 0; e < this.asn1Array.length; e++) { var i = this.asn1Array[e]; t.push(i.getEncodedHex()) } return t.sort(), this.hV = t.join(""), this.hV } }, Ce.extend(KJUR.asn1.DERSet, KJUR.asn1.DERAbstractStructured), KJUR.asn1.DERTaggedObject = function (t) { KJUR.asn1.DERTaggedObject.superclass.constructor.call(this), this.hT = "a0", this.hV = "", this.isExplicit = !0, this.asn1Object = null, this.setASN1Object = function (t, e, i) { this.hT = e, this.isExplicit = t, this.asn1Object = i, this.isExplicit ? (this.hV = this.asn1Object.getEncodedHex(), this.hTLV = null, this.isModified = !0) : (this.hV = null, this.hTLV = i.getEncodedHex(), this.hTLV = this.hTLV.replace(/^../, e), this.isModified = !1) }, this.getFreshValueHex = function () { return this.hV }, "undefined" != typeof t && ("undefined" != typeof t.tag && (this.hT = t.tag), "undefined" != typeof t.explicit && (this.isExplicit = t.explicit), "undefined" != typeof t.obj && (this.asn1Object = t.obj, this.setASN1Object(this.isExplicit, this.hT, this.asn1Object))) }, Ce.extend(KJUR.asn1.DERTaggedObject, KJUR.asn1.ASN1Object),
           // Copyright (c) 2008-2013 Lapo Luchini <lapo@lapo.it>
           // copyright notice and this permission notice appear in all copies.
@@ -293,23 +276,24 @@
     function addOrientationChangeListener() {
         var previousOrientation = window.orientation;
         var checkOrientation = function(){
+            //orientation changed
             if(window.orientation !== previousOrientation){
-                console.log("orientation changed");
                 previousOrientation = window.orientation;
                 localStorage.setItem(("savekey_pan"), getPanText());
                 localStorage.setItem(("savekey_exp"), getExpText());
                 localStorage.setItem(("savekey_avs"), getAVSText());
                 localStorage.setItem(("savekey_cvv"), getCVVText());
-                localStorage.setItem(("savekey_encrypted_pan"), encryptedCardNumber);
-                localStorage.setItem(("savekey_encrypted_cvv"), encryptedCvv);
+                localStorage.setItem(("savekey_encrypted_pan"), JSON.stringify(encryptedCardNumber));
+                localStorage.setItem(("savekey_encrypted_cvv"), JSON.stringify(encryptedCvv));
                 localStorage.setItem(("savekey_publickeyid"), publickeyId);
-                console.log("savedPan::"+localStorage.getItem("savekey_pan"));
-                console.log("savedExp::"+localStorage.getItem("savekey_exp"));
-                console.log("savedAVS::"+localStorage.getItem("savekey_avs"));
-                console.log("savedCVV::"+localStorage.getItem("savekey_cvv"));
-                console.log("savedPublicKeyId::"+localStorage.getItem("savekey_publickeyid"));
+
+                localStorage.setItem(("save_error_msg_card"), $('#partialCardNumberError').text());
+                localStorage.setItem(("save_error_msg_exp"), $('#expDateError').text());
+                localStorage.setItem(("save_error_msg_cvv"), $('#cvvError').text());
+                localStorage.setItem(("save_error_msg_avs"), $('#avsError').text());
+                localStorage.setItem(("save_error_msg_deny"), $('#denyError').text());
             } else {
-                console.log("orientation not changed");
+              //orientation not changed
             }
         };
         window.addEventListener("resize", checkOrientation, false);
@@ -325,25 +309,44 @@
           document.getElementById('input-exp-date').value = localStorage.getItem("savekey_exp");
         }
         if(localStorage.getItem("savekey_avs") != null) {
-          document.getElementById('input-cvv').value = localStorage.getItem("savekey_avs");
+          document.getElementById('input-avs').value = localStorage.getItem("savekey_avs");
         }
         if(localStorage.getItem("savekey_cvv") != null) {
-          document.getElementById('input-avs').value = localStorage.getItem("savekey_cvv");
+          document.getElementById('input-cvv').value = localStorage.getItem("savekey_cvv");
         }
         if(localStorage.getItem("savekey_encrypted_pan") != null) {
-          encryptedCardNumber = localStorage.getItem("savekey_encrypted_pan");
+          encryptedCardNumber = JSON.parse(localStorage.getItem("savekey_encrypted_pan"));
         }
         if(localStorage.getItem("savekey_encrypted_cvv") != null) {
-          encryptedCvv = localStorage.getItem("savekey_encrypted_cvv");
+          encryptedCvv = JSON.parse(localStorage.getItem("savekey_encrypted_cvv"));
         }
         if(localStorage.getItem("savekey_publickeyid") != null) {
           publickeyId = localStorage.getItem("savekey_publickeyid");
         }
+        //get restored error message
+        if(localStorage.getItem("save_error_msg_card") != null) {
+          cardErrorMsg = localStorage.getItem("save_error_msg_card");
+          $('#partialCardNumberError').text(cardErrorMsg);
+        }
+        if(localStorage.getItem("save_error_msg_exp") != null) {
+          expErrorMsg = localStorage.getItem("save_error_msg_exp");
+          $('#expDateError').text(expErrorMsg);
+        }
+        if(localStorage.getItem("save_error_msg_cvv") != null) {
+          cvvErrorMsg = localStorage.getItem("save_error_msg_cvv");
+          $('#cvvError').text(cvvErrorMsg);
+        }
+        if(localStorage.getItem("save_error_msg_avs") != null) {
+          avsErrorMsg = localStorage.getItem("save_error_msg_avs");
+          $('#avsError').text(avsErrorMsg);
+        }
+        if(localStorage.getItem("save_error_msg_deny") != null) {
+          submitErrorMsg = localStorage.getItem("save_error_msg_deny");
+          $('#denyError').text(submitErrorMsg);
+        }
         // clear localstorage once saved data is restored
-        console.log("clearing localstorage");
-        localStorage.clear()
+        localStorage.clear();
     }
-
 
     var unmaskedFirstIndex = 6;
     var unmaskedLastIndex = 4;
@@ -374,6 +377,12 @@
     var publickeyId = '';
     var secureCardData = {};
     var cvvEnabled = true;
+
+    var cardErrorMsg = '';
+    var expErrorMsg = '';
+    var cvvErrorMsg = '';
+    var avsErrorMsg = '';
+    var submitErrorMsg = '';
 
 
     function getInputSelection(el) {
@@ -533,10 +542,6 @@
         var expdate = getExpText();
         var avs = getAVSText();
         var cvv = getCVVText();
-        console.log("onclick, cardNumber::"+cardNumber);
-        console.log("onclick, expdate::"+expdate);
-        console.log("onclick, avs::"+avs);
-        console.log("onclick, cvv::"+cvv);
         var cardType = $.payment.cardType(cardNumber);
         if (cardNumber.length == 0) {
           $('.cc-number').toggleInputError(true);
@@ -546,11 +551,11 @@
           $('#expDateError').text('EXPIRATION REQUIRED');
         }
         if (cvv.length == 0) {
-          $('#cvvError').text('CVV REQUIRED');
+          $('#cvvError').text('SECURITY CODE REQUIRED');
         }
 
         if (avs.length == 0) {
-          $('#avsError').text('AVS REQUIRED');
+          $('#avsError').text('ZIP CODE REQUIRED');
           $('.cc-avs').toggleInputError(true);
         } else {
           $('#avsError').text('');
@@ -560,7 +565,7 @@
         $('.cc-cvv').toggleInputError(!$.payment.validateCardCVC(cvvTemp, cardType));
 
         //if any error within form, then do nothing
-        if ($('.form-error .error').text() == '' && $(".form-error .error:contains('INVALID')").length == 0 && $(".form-error .error:contains('REQUIRED')").length == 0) {
+        if ($('.form-error .error').text().trim() == '' && $(".form-error .error:contains('INVALID')").length == 0 && $(".form-error .error:contains('REQUIRED')").length == 0) {
           console.log(getSecureCardData());
           $('#denyError').text('');
           if (isMobile) {
@@ -579,12 +584,13 @@
       $('.cc-exp').payment('formatCardExpiry');
       // $('.cc-cvv').payment('formatCardCVC');
       var ccnf = document.getElementById("input-credit-card");
-      var pArr = [];
+      var pArr = [], currCardLen = 0;
       ccnf.addEventListener('keyup', function (e) {
         var cardsinfo = {}, validCard = false, cardLength = 16, keyEntered;
         var cardNumber = ccnf.value;
         var expdate = getExpText();
         // var cvv = getCVVText();
+
         var encrypt = new JSEncrypt();
         encrypt.setPublicKey(publickey);
 
@@ -600,6 +606,19 @@
           keyEntered = String.fromCharCode(key);
         }
 
+        // for android phone with all the keycodes are 229
+        if (os == 'Android' && e.keyCode == 229) {
+          if (cardNumber.length <= currCardLen && cardNumber.length < $('#input-credit-card').attr('maxlength')) {
+            $(this).val("");
+            sum = 0;
+            positionArr = [];
+            currCardLen = 0;
+            return;
+          } else {
+            currCardLen = cardNumber.length;
+          }
+        }
+        
         var cardType = $.payment.cardType(cardNumber);
 
         if(cardType == 'amex'){
@@ -674,6 +693,15 @@
 
       }, false);
 
+      ccnf.addEventListener('keydown', function (e) {
+        if (e.keyCode == 8) {
+          $(this).val("");
+          sum = 0;
+          positionArr = [];
+          currCardLen = 0;
+        }
+      })
+
       ccnf.addEventListener('click', function (e) {
         $('.cc-number').focusEnd();
       }, false);
@@ -713,17 +741,6 @@
         $('input.cc-number').toggleInputError(!luhnValid || !isExistedLength);
       }, false);
 
-      //backspace remove all context inside card number input
-      $('#input-credit-card').on("keydown", function (e) {
-        e = e ? e : event;
-        if (e.keyCode == 8) {
-          $(this).val("");
-          sum = 0;
-          positionArr = [];
-        }
-      });
-
-
       var ced = document.getElementById("input-exp-date");
       ced.addEventListener('blur', function (e) {
         var valid = $.payment.validateCardExpiry($('.cc-exp').payment('cardExpiryVal'));
@@ -748,7 +765,7 @@
         return this;
       };
 
-      var cvvArr = [], cvvTemp = ''
+      var cvvArr = [], cvvTemp = '';
       var cvv = document.getElementById("input-cvv");
       cvv.addEventListener('keyup', function (e) {
         var cvvValue = cvv.value;
@@ -772,36 +789,55 @@
         } else {
           keyEntered = String.fromCharCode(key);
         }
+        
+        //for android phone with all the keycodes are 229
+        if(os == 'Android' && e.keyCode == 229){
+            if (cvvValue.length < $('#input-cvv').attr('maxlength')){
+              if(isNaN(Number(keyEntered))){
+                $('.cc-cvv').val("");
+                cvvTemp = "";
+              }
+            }
+          }
 
         var cvvKeyPosition = getInputSelection(this).start;
         cvvArr.push(cvvKeyPosition);
 
+        // if the keyEntered is number then do the asterisk
         if (cvvArr.length <= $('#input-cvv').attr('maxlength') && !isNaN(keyEntered)) {
           encryptedCvvElement.value = encrypt.encrypt(keyEntered);
           encryptedCvvElement.encrypted = 'true';
           encryptedCvv.push(encryptedCvvElement);
 
           cvvTemp += keyEntered;
+
+          if (cvvTemp != "" && !isNaN(cvvTemp)) {
+            var str = '';
+            if (cvvTemp.length == 1) {
+              str = '*';
+            } else if (cvvTemp.length == 2) {
+              str = '**';
+            } else if (cvvTemp.length == 3) {
+              str = '***';
+            } else if (cvvTemp.length == 4) {
+              str = '****';
+            }
+
+            if (cvvTemp.length > 4) {
+              str = '****';
+              cvvTemp = cvvTemp.substring(0, 4);
+            }
+
+            $('.cc-cvv').val(str);
+          }
         }
+        
+      })
 
-        if (cvvTemp != "" && !isNaN(cvvTemp)) {
-          var str = '';
-          if (cvvTemp.length == 1) {
-            str = '*';
-          } else if (cvvTemp.length == 2) {
-            str = '**';
-          } else if (cvvTemp.length == 3) {
-            str = '***';
-          } else if (cvvTemp.length == 4) {
-            str = '****';
-          }
-
-          if (cvvTemp.length > 4) {
-            str = '****';
-            cvvTemp = cvvTemp.substring(0, 4);
-          }
-
-          $('.cc-cvv').val(str);
+      cvv.addEventListener('keydown', function (e) {
+        if (e.keyCode == 8) {
+          $(this).val("");
+          cvvTemp = '';
         }
       })
 
@@ -810,9 +846,9 @@
           var cvvValid = $.payment.validateCardCVC(cvvTemp, cardTypeG);
           if (!cvvValid) {
             if (getCVVText().length == 0) {
-              $('#cvvError').text('CVV REQUIRED');
+              $('#cvvError').text('SECURITY CODE REQUIRED');
             } else {
-              $('#cvvError').text('INVALID CVV');
+              $('#cvvError').text('INVALID SECURITY CODE');
             }
           } else {
             $('#cvvError').text('');
@@ -825,7 +861,7 @@
       var avsInput = document.getElementById("input-avs");
       avsInput.addEventListener('blur', function (e) {
         if (avsInput.value.length == 0) {
-          $('#avsError').text('AVS REQUIRED');
+          $('#avsError').text('ZIP CODE REQUIRED');
           $('.cc-avs').toggleInputError(true);
         } else {
           $('#avsError').text('');
@@ -836,15 +872,6 @@
       avsInput.addEventListener('keyup', function (e) {
         activeAddon(avsInput.value, $('#input-avs'));
       })
-
-      //backspace remove all context inside card number input
-      $('#input-cvv').on("keydown", function (e) {
-        e = e ? e : event;
-        if (e.keyCode == 8) {
-          $(this).val("");
-          cvvTemp = '';
-        }
-      });
 
       cvv.addEventListener('click', function (e) {
         $('.cc-cvv').focusEnd();
@@ -932,7 +959,6 @@
     }
 
     function AndroidSubmit(secureData, expdate, avs, publickeyId) {
-      console.log("onSubmit, sceureDate::"+secureData);
       Android.showToast('Charge Now!');
       //set publickeyId to secureData.Id?
       Android.chargeNow(secureData, expdate, avs, publickeyId);
@@ -1013,7 +1039,7 @@
         <div class="col-md-4 col-sm-4 col-xs-6">
           <div class="input-group">
             <span class="input-group-addon custom-addon"><i class="fa fa-lock fa-2x"></i></span>
-            <input id="input-cvv" type="tel" class="input-lg  form-control cc-cvv" placeholder="CVV" required maxlength="4"
+            <input id="input-cvv" type="tel" class="input-lg  form-control cc-cvv" placeholder="SECURITY CODE" required maxlength="4"
               onkeyup="value=value.replace(/[^\d\*]/g,'')">
             </div>
             <div class="text-center form-error">
@@ -1023,8 +1049,8 @@
 
         <div class="col-md-4 col-sm-4 col-xs-12">
           <div class="input-group">
-            <span class="input-group-addon custom-addon"><i class="fa fa-map-marker fa-2x"></i></span>
-            <input id="input-avs" type="text" class="input-lg form-control cc-avs" placeholder="AVS" required maxlength="10"
+            <span class="input-group-addon custom-addon"><i class="fa fa-home fa-2x"></i></span>
+            <input id="input-avs" type="text" class="input-lg form-control cc-avs" placeholder="ZIP CODE" required maxlength="10"
               onkeyup="value=value.replace(/[^\d\s^a-zA-Z^-]/g,'')">
             </div>
             <div class="text-center form-error">
